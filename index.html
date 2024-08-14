@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #7e0a0a; /* Fallback color */
+            overflow: hidden; /* Prevent scrollbars */
+            background-image: url('https://img.goodfon.com/wallpaper/big/7/94/peyzazh-motocikl-moto-bike.webp');
+            background-size: cover; /* Ensure the image covers the entire viewport */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+            margin: 30px;
+            max-width: 1200px; /* Limit the container width */
+            width: 100%;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #0b805e;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .details {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .details.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .details-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            width: 300px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .details-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" onclick="showDetails('₹ 2,72,419 - mileage 34 kmpl', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/tvs-select-model-race-replica-1630329991653.jpg?q=80')">
+            <h3>Card 1</h3>
+        </div>
+        <div class="card" onclick="showDetails('Price ₹ 1,83,464 and mileage 50 kmpl', 'https://imgd.aeplcdn.com/272x153/n/cw/ec/103795/r15-right-side-view-7.png?isig=0&q=80')">
+            <h3>Card 2</h3>
+        </div>
+        <div class="card" onclick="showDetails('Price ₹ 1,72,687 - mileage 40 kmpl', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-white-1669284367837.png?q=80')">
+            <h3>RS200</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-white-1669284367837.png?q=80" alt="Card 3 Image">
+        </div>
+        <div class="card" onclick="showDetails('Price ₹ 1,49,900\nDetails:\nEngine Capacity: 349.34 cc\nMileage - ARAI: 36 kmpl\nTransmission: 5 Speed Manual\nKerb Weight: 177 kg\nFuel Tank Capacity: 13 litres\nSeat Height: 800 mm', 'https://imgd.aeplcdn.com/227x128/n/cw/ec/124013/hunter-350-right-side-view-5.png?isig=0&q=80')">
+            <img src="https://imgd.aeplcdn.com/227x128/n/cw/ec/124013/hunter-350-right-side-view-5.png?isig=0&q=80" alt="Card 4 Image">
+            <h3>RE Hunter</h3>
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 164.82 cc Mileage - ARAI 51.6 kmpl Transmission 5 Speed Manual Kerb Weight 152 kg Fuel Tank Capacity 14 litres Seat Height 795 mm', 'https://imgd.aeplcdn.com/664x374/n/cw/ec/124645/pulsar-n160-right-side-view-8.jpeg?isig=0&q=80')">
+            <h3>N160</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/124645/pulsar-n160-right-side-view-8.jpeg?isig=0&q=80" alt="Card 5 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 334 cc Mileage 30 kmpl Transmission 6 Speed Manual Fuel Tank Capacity 14 litres Seat Height 740 mm Max Power 29.51 bhp', 'https://imgd.aeplcdn.com/664x374/n/cw/ec/131937/42-bobber-right-side-view-5.png?isig=0&q=80')">
+            <h3>Jawa Bobber</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/131937/42-bobber-right-side-view-5.png?isig=0&q=80" alt="Card 6 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 648 cc Mileage 25 kmpl Transmission 6 Speed Manual Kerb Weight 211 kg Fuel Tank Capacity 12.5 litres Seat Height 804 mm', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/royal-enfield-select-model-british-racing-green-1668419802695.jpg?q=80')">
+            <h3>RE Continental</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/49656/continental-gt-right-side-view-12.png?isig=0&q=80" alt="Card 7 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 648 cc Mileage - ARAI 23.7 kmpl Transmission 6 Speed Manual Kerb Weight 241 kg Fuel Tank Capacity 15.7 litres Seat Height 740 mm', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/royal-enfield-select-model-astral-green-1673881117844.png?q=80')">
+            <h3>Meteor</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/108885/super-meteor-650-right-side-view-6.png?isig=0&q=80" alt="Card 8 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 155 cc Mileage 48 kmpl Transmission 6 Speed Manual Kerb Weight 141 kg Fuel Tank Capacity 10 litres Seat Height 810 mm', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/yamaha-select-model-metallic-black-2023-1680847548270.png?q=80')">
+            <h3>MT 15</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/115871/mt-15-v2-right-front-three-quarter-3.jpeg?isig=0&q=80" alt="Card 9 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 199.5 cc Mileage 36 kmpl Transmission 6 Speed Manual Kerb Weight 159.5 kg Fuel Tank Capacity 12 litres Seat Height 805 mm', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/bajaj-select-model-pewter-grey-1709101653302.png?q=80')">
+            <h3>NS 200</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/58025/pulsar-ns-right-side-view-9.png?isig=0&q=80" alt="Card 10 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 349 cc Mileage - ARAI 32 kmpl Transmission 5 Speed Manual Kerb Weight 195 kg Fuel Tank Capacity 13 litres Seat Height 805 mm', 'https://imgd.aeplcdn.com/227x128/n/cw/ec/101487/classic-350-right-side-view-20.png?isig=0&q=80')">
+            <h3>Classic</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/bw/models/colors/royal-enfield-select-model-redditch-red-1668165061168.png?q=80" alt="Card 11 Image">
+        </div>
+        <div class="card" onclick="showDetails('Engine Capacity 296 cc Mileage 25 kmpl Transmission 6 Speed Manual Kerb Weight 179 kg Fuel Tank Capacity 17 litres Seat Height 780 mm', 'https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-metallic-moondust-gray-1718372335944.png?isig=0&q=80')">
+            <h3>Ninja</h3>
+            <img src="https://imgd.aeplcdn.com/664x374/n/bw/models/colors/kawasaki-select-model-metallic-moondust-gray-1718372335944.png?isig=0&q=80" alt="Card 12 Image">
+        </div>
+    </div>
+    <div id="details" class="details">
+        <div class="details-content">
+            <span onclick="closeDetails()" class="close">&times;</span>
+            <img id="details-image" src="" alt="Card Image">
+            <p id="details-content"></p>
+        </div>
+    </div>
+    <script>
+        function showDetails(content, imageUrl) {
+            const details = document.getElementById('details');
+            const detailsContent = document.getElementById('details-content');
+            const detailsImage = document.getElementById('details-image');
+            detailsContent.textContent = content;
+            detailsImage.src = imageUrl;
+            details.classList.add('show');
+        }
+
+        function closeDetails() {
+            const details = document.getElementById('details');
+            details.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
